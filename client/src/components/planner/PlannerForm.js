@@ -147,6 +147,7 @@ const PlannerForm = ({ meal, addMeal, editMeal, deleteMeal }) => {
               <div className="form-meal-grid bg-white my-1">
                 <div className="form-grid-group ingredient-delete-item">
                   <button
+                    type="button"
                     onClick={() => deleteGrocery(i)}
                     className="btn btn-danger"
                   >

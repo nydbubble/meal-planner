@@ -13,7 +13,7 @@ const Recipe = ({ auth, match, deleteRecipe }) => {
     description: "",
     servings: "",
     instructions: [],
-    ingredients: [],
+    ingredientsList: [],
     user: {},
     createdDate: "",
     updatedDate: "",
@@ -28,9 +28,8 @@ const Recipe = ({ auth, match, deleteRecipe }) => {
       setRecipe(res.data);
       setLoading(false);
     } catch (err) {
-      setRecipe(initialState);
+      setRecipe(null);
       setLoading(false);
-      return <Redirect to="/recipes" />;
     }
   };
 
@@ -38,12 +37,17 @@ const Recipe = ({ auth, match, deleteRecipe }) => {
     getRecipe(match);
   }, [match, loading]);
 
+  if (!recipe) {
+    return <p>Recipe not found</p>;
+  }
+
   const {
     title,
     description,
     servings,
+    image,
     instructions,
-    ingredients,
+    ingredientsList,
     user,
     createdDate,
     updatedDate,
@@ -51,26 +55,30 @@ const Recipe = ({ auth, match, deleteRecipe }) => {
 
   const delRecipe = async () => {
     deleteRecipe(match.params.id);
-    setRecipe(null);
+    //setRecipe(null);
+    return <Redirect to="/recipes" />;
   };
 
   const changeServings = (e) => {
     if (e.target.value > 0) {
-      const ingredientsList = ingredients.map((ingredient) => ({
-        ...ingredient,
-        amount: (ingredient.amount * e.target.value) / servings,
-      }));
+      const ingredientslist = ingredientsList.map((section) => {
+        section.ingredients = section.ingredients.map((ingredient) => ({
+          ...ingredient,
+          amount: (ingredient.amount * e.target.value) / servings,
+        }));
+        return section;
+      });
       setRecipe({
         ...recipe,
         servings: e.target.value,
-        ingredients: ingredientsList,
+        ingredientsList: ingredientslist,
       });
     }
   };
 
   return (
     <Fragment>
-      {recipe && !loading ? (
+      {!loading ? (
         <Fragment>
           {!auth.loading && auth.isAuthenticated && auth.user._id === user._id && (
             <Fragment>
@@ -99,10 +107,7 @@ const Recipe = ({ auth, match, deleteRecipe }) => {
             </div>
 
             <div className="recipe-image bg-primary p-2">
-              <img
-                alt={title}
-                src="https://www.simplyrecipes.com/thmb/L5NZQ7OsDodmvvITXy0nloyHx_M=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2006__09__Garlic-Bread-LEAD-2b-24b3ef3eb22647f4b9e57340b8dbe50a.jpg"
-              />
+              <img alt={title} src={image} />
               {/* <Link to="/add-plan" className="btn btn-dark my-1">
                 Add to planner
               </Link> */}
@@ -110,15 +115,31 @@ const Recipe = ({ auth, match, deleteRecipe }) => {
 
             <div className="recipe-ingredients bg-white p-2">
               <h2 className="text-primary">Ingredients</h2>
-              <ul className="ingredients">
-                {ingredients && ingredients.length > 0
+              {ingredientsList.length > 0 &&
+                ingredientsList.map(({ section, ingredients }) => (
+                  <Fragment>
+                    <h3>{section}</h3>
+
+                    <ul className="ingredients">
+                      {ingredients.length > 0 &&
+                        ingredients.map(
+                          ({ _id, amount, unit, name, notes }) => (
+                            <li key={_id}>
+                              {amount} {unit} {name}{" "}
+                              {notes && <small>{notes}</small>}
+                            </li>
+                          )
+                        )}
+                    </ul>
+                  </Fragment>
+                ))}
+              {/* {ingredients && ingredients.length > 0
                   ? ingredients.map(({ _id, amount, unit, name, notes }) => (
                       <li key={_id}>
                         {amount} {unit} {name} {notes && <small>{notes}</small>}
                       </li>
                     ))
-                  : ""}
-              </ul>
+                  : ""} */}
             </div>
 
             <div className="recipe-instructions bg-white p-2">

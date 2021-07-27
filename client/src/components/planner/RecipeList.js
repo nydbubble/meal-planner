@@ -53,11 +53,20 @@ const RecipeList = ({
       recipe_name: recipe.title,
       date,
       order,
-      groceries: recipe.ingredients.map((ingredient) => ({
-        name: ingredient.name,
-        amount: ingredient.amount,
-        unit: ingredient.unit,
-      })),
+      groceries: recipe.ingredientsList
+        .map(({ ingredients }) =>
+          ingredients.map((ingredient) => ({
+            name: ingredient.name,
+            amount: ingredient.amount,
+            unit: ingredient.unit,
+          }))
+        )
+        .flat(),
+      // groceries: recipe.ingredients.map((ingredient) => ({
+      //   name: ingredient.name,
+      //   amount: ingredient.amount,
+      //   unit: ingredient.unit,
+      // })),
       servings: recipe.servings,
     });
   };
@@ -107,7 +116,7 @@ const RecipeList = ({
             className="recipe-list-container"
           >
             <div className="recipe-list-image">
-              <img src="https://www.simplyrecipes.com/thmb/L5NZQ7OsDodmvvITXy0nloyHx_M=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2006__09__Garlic-Bread-LEAD-2b-24b3ef3eb22647f4b9e57340b8dbe50a.jpg" />
+              <img alt={recipe.title} src={recipe.image} />
             </div>
             <div className="recipe-list-content">
               <h4 className="recipe-list-title">{recipe.title}</h4>

@@ -9,8 +9,8 @@ import Loading from "../layout/Loading";
 
 const Recipes = ({ auth, getRecipes, recipe: { recipes, loading } }) => {
   useEffect(() => {
-    if (recipes.length === 0) getRecipes();
-  }, [getRecipes]);
+    getRecipes();
+  }, []);
 
   return (
     <Fragment>
@@ -39,7 +39,11 @@ const Recipes = ({ auth, getRecipes, recipe: { recipes, loading } }) => {
   );
 };
 
-Recipes.propTypes = {};
+Recipes.propTypes = {
+  auth: PropTypes.object,
+  recipe: PropTypes.object,
+  getRecipes: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   auth: state.auth,

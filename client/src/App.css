@@ -535,7 +535,7 @@ small {
   grid-template-columns: auto 250px;
 }
 .recipe-image img {
-  float: right;
+  /* float: right; */
   -o-object-fit: cover;
   object-fit: cover;
   width: 200px;
