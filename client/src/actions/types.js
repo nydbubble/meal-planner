@@ -1,0 +1,11 @@
+export const SET_ALERT = "SET_ALERT";
+export const REMOVE_ALERT = "REMOVE_ALERT";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const USER_LOADED = "USER_LOADED";
+export const AUTH_ERROR = "AUTH_ERROR";
+export const LOGOUT = "LOGOUT";
+export const GET_RECIPES = "GET_RECIPES";
+export const RECIPE_ERROR = "RECIPE_ERROR";
+export const GET_MEALS = "GET_MEALS";
+export const MEALS_ERROR = "MEALS_ERROR";
