@@ -12,10 +12,10 @@ const Landing = ({ isAuthenticated }) => {
     <section className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <h1 className="x-large">Developer Connector</h1>
+          <h1 className="x-large">Meal Planner</h1>
           <p className="lead">
-            Create Developer Profile/portfolio, share posts and get help from
-            other developers.
+            Share recipes and plan your meals for the week. Groceries list will
+            be added based on recipe ingredients.
           </p>
           <div className="buttons">
             <Link className="btn btn-primary" to="/register">
