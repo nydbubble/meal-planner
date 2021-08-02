@@ -42,7 +42,8 @@ export const editRecipe = (id, recipe) => async (dispatch) => {
   }
 
   try {
-    const res = await axios.put(`/api/recipes/${id}`, body, config);
+    await axios.put(`/api/recipes/${id}`, body, config);
+
     dispatch(setAlert("Recipe editted successfully.", "success"));
     dispatch(getRecipes());
   } catch (err) {
@@ -61,7 +62,7 @@ export const addRecipe = (recipe) => async (dispatch) => {
   }
 
   try {
-    const res = await axios.post("/api/recipes", body, config);
+    await axios.post("/api/recipes", body, config);
 
     dispatch(setAlert("Recipe added successfully", "success"));
     dispatch(getRecipes());

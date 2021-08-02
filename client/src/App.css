@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 .m-1 {
   margin: 1rem;
 }
@@ -82,22 +82,22 @@
   margin-bottom: 1rem;
 }
 .text-primary {
-  color: #17a2b8;
+  color: #945d60;
 }
 .round-img {
   border-radius: 50%;
 }
 .bg-primary {
-  background-color: #17a2b8;
+  background-color: #945d60;
   color: #fff;
 }
 .bg-light {
-  background-color: #f4f4f4;
+  background-color: #f7f4ef;
   color: #333;
   border: #ccc 1px solid;
 }
 .bg-dark {
-  background-color: #343a40;
+  background-color: #342628;
   color: #fff;
 }
 .bg-danger {
@@ -115,7 +115,7 @@
 }
 .btn {
   display: inline-block;
-  background: #f4f4f4;
+  background: #f7f4ef;
   color: #333;
   padding: 0.4em 1.3rem;
   border: none;
@@ -127,14 +127,14 @@
   transition: all 0.2s ease-in;
 }
 .btn.btn-primary {
-  background-color: #17a2b8;
+  background-color: #945d60;
   color: #fff;
 }
 .btn.btn-primary:hover {
-  background: #1ab6cf;
+  background: #a1696c;
 }
 .btn.btn-dark {
-  background-color: #343a40;
+  background-color: #342628;
   color: #fff;
 }
 .btn.btn-dark:hover {
@@ -162,15 +162,15 @@
   padding: 0.8rem;
   margin: 1rem;
   opacity: 0.9;
-  background: #f4f4f4;
+  background: #f7f4ef;
   color: #333;
 }
 .alert.alert-primary {
-  background-color: #17a2b8;
+  background-color: #945d60;
   color: #fff;
 }
 .alert.alert-dark {
-  background-color: #343a40;
+  background-color: #342628;
   color: #fff;
 }
 .alert.alert-success {
@@ -242,7 +242,7 @@
   padding: 0;
 }
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: white;
@@ -250,7 +250,7 @@ body {
 }
 a {
   text-decoration: none;
-  color: #17a2b8;
+  color: #945d60;
 }
 ul {
   list-style: none;
@@ -314,7 +314,7 @@ small {
   z-index: 1;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px #17a2b8;
+  border-bottom: solid 1px #945d60;
   opacity: 0.9;
 }
 .navbar ul {
@@ -328,7 +328,7 @@ small {
   margin: 0 0.25rem;
 }
 .navbar a:hover {
-  color: #17a2b8;
+  color: #945d60;
 }
 .landing {
   position: relative;
@@ -402,7 +402,7 @@ small {
   left: 0.3rem;
   width: 0.65rem;
   height: 0.3rem;
-  border: 2px solid #17a2b8;
+  border: 2px solid #945d60;
   border-right: none;
   border-top: none;
   -webkit-transform: rotate(-45deg) scale(0.5);
@@ -475,7 +475,9 @@ small {
   border: 1px solid #ccc;
 }
 .recipe-card img {
+  object-fit: cover;
   max-width: 100%;
+  max-height: 200px;
 }
 .recipe-card a {
   font-size: 1.5rem;
@@ -500,7 +502,7 @@ small {
 }
 .recipe-list-container:hover {
   border: 1px solid #888;
-  background-color: #f4f4f4;
+  background-color: #f7f4ef;
 }
 .recipe-list-image {
   -webkit-box-flex: 3;

@@ -1,7 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://nydia:lo1JP7ikcGEfEwaZ@cluster0.tlg9n.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  "jwtSecret": "mysecrettoken",
-  "cloudinaryName": "dxn5iitbv",
-  "cloudinaryKey": "764645692755744",
-  "cloudinarySecret": "fputhml7gbIL4cuhMHQgdRjya1I"
-}

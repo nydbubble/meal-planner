@@ -5,7 +5,7 @@ const initialState = {
   loading: true,
 };
 
-export default function (state = initialState, action) {
+export default function recipe(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_RECIPES:

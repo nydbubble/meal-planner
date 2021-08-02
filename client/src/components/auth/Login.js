@@ -1,7 +1,6 @@
 import { Fragment, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 
 import { login } from "../../actions/auth";
 
@@ -46,7 +45,6 @@ const Login = ({ isAuthenticated, login }) => {
             value={password}
             onChange={onChange}
             placeholder="Password"
-            minlength="6"
           />
         </div>
         <input type="submit" value="Login" className="btn btn-primary" />
@@ -57,8 +55,6 @@ const Login = ({ isAuthenticated, login }) => {
     </Fragment>
   );
 };
-
-Login.propTypes = {};
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,

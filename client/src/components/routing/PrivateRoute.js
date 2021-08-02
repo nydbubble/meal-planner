@@ -1,7 +1,5 @@
-import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 
 import Loading from "../layout/Loading";
 
@@ -25,8 +23,6 @@ const PrivateRoute = ({
     />
   );
 };
-
-PrivateRoute.propTypes = {};
 
 const mapStateToProps = (state) => ({
   auth: state.auth,

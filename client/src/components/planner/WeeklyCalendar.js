@@ -16,7 +16,7 @@ const WeeklyCalendar = ({ startDate, meals, onClick }) => {
       <div className="bg-dark p-1">Dinner</div>
 
       {week.map((day) => (
-        <Fragment>
+        <Fragment key={day}>
           <div
             className={`bg-${
               dayjs().isSame(day, "day") ? "primary" : "dark"

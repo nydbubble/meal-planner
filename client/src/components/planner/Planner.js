@@ -1,7 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import axios from "axios";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 
@@ -10,10 +8,7 @@ import RecipeList from "./RecipeList";
 import { getRecipes } from "../../actions/recipe";
 import { getMeals, addMeal } from "../../actions/meal";
 
-const Planner = ({ recipes, getRecipes, getMeals, meals }) => {
-  // const [meals, setMeals] = useState({
-  //   meals: [],
-  // });
+const Planner = ({ getMeals, meals }) => {
   dayjs.extend(isBetween);
 
   const [groceries, setGroceries] = useState({
@@ -32,52 +27,11 @@ const Planner = ({ recipes, getRecipes, getMeals, meals }) => {
   });
 
   const { date, order } = mealId;
-
-  // const getMeals = async () => {
-  //   try {
-  //     const res = await axios.get(
-  //       `/api/meals/?start=${startDate.format("YYYY-MM-DD")}&end=${startDate
-  //         .add(6, "day")
-  //         .format("YYYY-MM-DD")}`
-  //     );
-  //     const groceriesList = [];
-  //     const meals = res.data.map((item) => {
-  //       groceriesList.push(...item.groceries);
-  //       return {
-  //         ...item,
-  //         date: dayjs(item.date),
-  //       };
-  //     });
-  //     setGroceries(groceriesList);
-  //     setMeals(meals);
-  //   } catch (err) {
-  //     console.error(err);
-  //     setGroceries([]);
-  //     setMeals([]);
-  //   }
-  // };
-
-  // const getGroceries = async () => {
-  //   try {
-  //     const res = await axios.get(
-  //       `/api/meals/groceries/?start=${startDate.format(
-  //         "YYYY-MM-DD"
-  //       )}&end=${startDate.add(6, "day").format("YYYY-MM-DD")}`
-  //     );
-  //     setGroceries(res.data);
-  //   } catch (err) {
-  //     //console.error(err);
-  //     setGroceries([]);
-  //   }
-  // };
-
   useEffect(() => {
     getMeals();
   }, []);
 
   useEffect(() => {
-    //getMeals();
-    //getGroceries();
     let groceriesList = [];
     meals
       .filter((meal) =>
@@ -106,22 +60,6 @@ const Planner = ({ recipes, getRecipes, getMeals, meals }) => {
     });
   };
 
-  // const addToMealPlan = async (recipe_name, recipe_id) => {
-  //   const config = { headers: { "Content-Type": "application/json" } };
-  //   const meal = {
-  //     recipe_id,
-  //     recipe_name,
-  //     date: date.toDate(),
-  //     order,
-  //   };
-  //   const body = JSON.stringify(meal);
-  //   try {
-  //     const res = await axios.post(`/api/meals/`, body, config);
-  //     getMeals();
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
   return (
     <Fragment>
       <h1 className="large text-primary">Meal Planner</h1>
@@ -173,8 +111,6 @@ const Planner = ({ recipes, getRecipes, getMeals, meals }) => {
     </Fragment>
   );
 };
-
-Planner.propTypes = {};
 
 const mapStateToProps = (state) => ({
   recipes: state.recipe.recipes,

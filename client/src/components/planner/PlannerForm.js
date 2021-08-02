@@ -1,13 +1,11 @@
 import { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import axios from "axios";
 import dayjs from "dayjs";
 
-import { addMeal, editMeal, deleteMeal } from "../../actions/meal";
+import { addMeal, editMeal } from "../../actions/meal";
 
-const PlannerForm = ({ meal, addMeal, editMeal, deleteMeal }) => {
+const PlannerForm = ({ meal, addMeal, editMeal }) => {
   const orderName = ["breakfast", "lunch", "dinner"];
   const [formData, setFormData] = useState({
     recipe_name: "",
@@ -65,10 +63,6 @@ const PlannerForm = ({ meal, addMeal, editMeal, deleteMeal }) => {
     setFormData({ ...formData, groceries: groceriesList });
   };
 
-  const searchRecipe = async (e) => {
-    const recipe = await axios.get(`/api/recipes/?name=${recipe_name}`);
-  };
-
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
@@ -86,40 +80,6 @@ const PlannerForm = ({ meal, addMeal, editMeal, deleteMeal }) => {
         for {orderName[order]} at {date.format("ddd, DD MMM YYYY")}
       </h4>
       <form className="form" onSubmit={onSubmit}>
-        {/* <div className="form-group">
-          <input
-            type="text"
-            name="recipe_name"
-            value={recipe_name}
-            onChange={onChange}
-            disabled="true"
-            placeholder="* Food name"
-          />
-        </div>
-        <div className="form-group">
-          <h4>* Date</h4>
-          <input
-            type="date"
-            name="date"
-            value={date.format("YYYY-MM-DD")}
-            onChange={onChange}
-            disabled="true"
-            placeholder="* Date"
-          />
-        </div>
-        <div className="form-group">
-          <select
-            disabled="true"
-            name="order"
-            value={order}
-            onChange={onChange}
-          >
-            <option value="-1">* Select food type</option>
-            <option value="0">Breakfast</option>
-            <option value="1">Lunch</option>
-            <option value="2">Dinner</option>
-          </select>
-        </div> */}
         <div className="form-group">
           <h4>Servings</h4>
           <input
@@ -196,6 +156,4 @@ const PlannerForm = ({ meal, addMeal, editMeal, deleteMeal }) => {
   );
 };
 
-PlannerForm.propTypes = {};
-
-export default connect(null, { addMeal, editMeal, deleteMeal })(PlannerForm);
+export default connect(null, { addMeal, editMeal })(PlannerForm);

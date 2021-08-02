@@ -1,5 +1,4 @@
 import { useState, useEffect, Fragment } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import PlannerForm from "./PlannerForm";
 import dayjs from "dayjs";
@@ -8,7 +7,6 @@ import { deleteMeal } from "../../actions/meal";
 import { getRecipes } from "../../actions/recipe";
 import Loading from "../layout/Loading";
 
-//onClick={() => onClick(recipe.title, recipe._id)}
 const RecipeList = ({
   meals: { meals, loading },
   recipeList,
@@ -62,11 +60,6 @@ const RecipeList = ({
           }))
         )
         .flat(),
-      // groceries: recipe.ingredients.map((ingredient) => ({
-      //   name: ingredient.name,
-      //   amount: ingredient.amount,
-      //   unit: ingredient.unit,
-      // })),
       servings: recipe.servings,
     });
   };
@@ -110,6 +103,7 @@ const RecipeList = ({
         recipes.length > 0 &&
         recipes.map((recipe) => (
           <div
+            key={recipe._id}
             onClick={() => {
               createMeal(recipe);
             }}
@@ -127,8 +121,6 @@ const RecipeList = ({
     </div>
   );
 };
-
-RecipeList.propTypes = {};
 
 const mapStateToProps = (state) => ({
   recipes: state.recipe.recipes,

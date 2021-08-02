@@ -116,8 +116,8 @@ const Recipe = ({ auth, match, deleteRecipe }) => {
             <div className="recipe-ingredients bg-white p-2">
               <h2 className="text-primary">Ingredients</h2>
               {ingredientsList.length > 0 &&
-                ingredientsList.map(({ section, ingredients }) => (
-                  <Fragment>
+                ingredientsList.map(({ _id, section, ingredients }) => (
+                  <Fragment key={_id}>
                     <h3>{section}</h3>
 
                     <ul className="ingredients">
@@ -133,13 +133,6 @@ const Recipe = ({ auth, match, deleteRecipe }) => {
                     </ul>
                   </Fragment>
                 ))}
-              {/* {ingredients && ingredients.length > 0
-                  ? ingredients.map(({ _id, amount, unit, name, notes }) => (
-                      <li key={_id}>
-                        {amount} {unit} {name} {notes && <small>{notes}</small>}
-                      </li>
-                    ))
-                  : ""} */}
             </div>
 
             <div className="recipe-instructions bg-white p-2">

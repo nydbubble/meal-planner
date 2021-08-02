@@ -9,7 +9,6 @@ import Recipes from "../recipes/Recipes";
 import RecipeForm from "../recipes/RecipeForm";
 import Recipe from "../recipes/Recipe";
 import Planner from "../planner/Planner";
-import PlannerForm from "../planner/PlannerForm";
 
 const Routes = () => {
   return (

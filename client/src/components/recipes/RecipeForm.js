@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { useRouteMatch, Redirect } from "react-router";
-import PropTypes from "prop-types";
+import { useRouteMatch } from "react-router";
 import axios from "axios";
 
 import Loading from "../layout/Loading";
@@ -37,22 +36,6 @@ const RecipeForm = ({ auth, addRecipe, editRecipe, match }) => {
     if (!addingRecipe) getRecipe(match);
   }, [match, loading]);
 
-  // useEffect(() => {
-  //   if (!addingRecipe) {
-  //     const fetchRecipe = async (match) => {
-  //       const recipe = await getRecipe(match.params.id);
-  //       console.log(recipe);
-  //       setFormData({
-  //         ...recipe,
-  //         instructions: recipe.instructions.join("\n"),
-  //       });
-  //       //        setFormData(await getRecipe(match.params.id));
-  //     };
-
-  //     fetchRecipe(match);
-  //   }
-  // }, []);
-
   const { title, image, description, servings, ingredientsList, instructions } =
     formData;
 
@@ -68,9 +51,6 @@ const RecipeForm = ({ auth, addRecipe, editRecipe, match }) => {
     ingredientsList[sectionID]["ingredients"][i][e.target.name] =
       e.target.value;
     setFormData({ ...formData, ingredientsList });
-    // const ingredientslist = ingredients;
-    // ingredientslist[i][e.target.name] = e.target.value;
-    // setFormData({ ...formData, ingredients: ingredientslist });
   };
 
   const addIngredient = (sectionID) => {
@@ -81,22 +61,11 @@ const RecipeForm = ({ auth, addRecipe, editRecipe, match }) => {
       notes: "",
     });
     setFormData({ ...formData, ingredientsList });
-    // const ingredientslist = ingredients;
-    // ingredientslist.push({
-    //   name: "",
-    //   amount: "",
-    //   unit: "",
-    //   notes: "",
-    // });
-    // setFormData({ ...formData, ingredients: ingredientslist });
   };
 
   const deleteIngredient = (sectionID, i) => {
     ingredientsList[sectionID]["ingredients"].splice(i, 1);
     setFormData({ ...formData, ingredientsList });
-    // const ingredientslist = ingredients;
-    // ingredientslist.splice(i, 1);
-    // setFormData({ ...formData, ingredients: ingredientslist });
   };
 
   const onChangeSection = (e, sectionID) => {
@@ -114,13 +83,6 @@ const RecipeForm = ({ auth, addRecipe, editRecipe, match }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    //console.log(formData);
-    // const body = new FormData();
-    // for (let key in formData) {
-    //   if (key === "image" && typeof image !== "string") {
-    //     body.append(key, formData[key]);
-    //   } else body.append(key, JSON.stringify(formData[key]));
-    // }
     try {
       addingRecipe
         ? addRecipe(formData)
@@ -142,7 +104,6 @@ const RecipeForm = ({ auth, addRecipe, editRecipe, match }) => {
         <p>Not authorized</p>
       ) : (
         <Fragment>
-          {/* {formSubmitted && <Redirect to="/recipes" />} */}
           <h1 className="large text-primary">
             {addingRecipe ? "Add Recipe" : "Edit Recipe"}
           </h1>
@@ -324,8 +285,6 @@ const RecipeForm = ({ auth, addRecipe, editRecipe, match }) => {
     </Fragment>
   );
 };
-
-RecipeForm.propTypes = {};
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
