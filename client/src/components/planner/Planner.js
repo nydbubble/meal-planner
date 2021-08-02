@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useLayoutEffect } from "react";
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
@@ -7,6 +7,7 @@ import WeeklyCalendar from "./WeeklyCalendar";
 import RecipeList from "./RecipeList";
 import { getRecipes } from "../../actions/recipe";
 import { getMeals, addMeal } from "../../actions/meal";
+import WeeklyCalendarList from "./WeeklyCalendarList";
 
 const Planner = ({ getMeals, meals }) => {
   dayjs.extend(isBetween);
@@ -27,6 +28,27 @@ const Planner = ({ getMeals, meals }) => {
   });
 
   const { date, order } = mealId;
+
+  const [dimensions, setDimensions] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
+  });
+
+  useEffect(() => {
+    function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      });
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return (_) => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
   useEffect(() => {
     getMeals();
   }, []);
@@ -68,22 +90,30 @@ const Planner = ({ getMeals, meals }) => {
         <div className="planner-calendar bg-white p-1">
           <h3>Meal Plan</h3>
           <p>
-            Week of {startDate.format("DD MMMM YYYY")}
-            {"   "}
             <i
               onClick={changePrevWeek}
               className="fas fa-chevron-left btn btn-light"
             ></i>
+            Week of {startDate.format("DD MMMM YYYY")}{" "}
             <i
               onClick={changeNextWeek}
               className="fas fa-chevron-right btn btn-light"
             ></i>
           </p>
-          <WeeklyCalendar
-            startDate={startDate}
-            meals={meals}
-            onClick={openRecipeList}
-          />
+
+          {dimensions.width > 765 ? (
+            <WeeklyCalendar
+              startDate={startDate}
+              meals={meals}
+              onClick={openRecipeList}
+            />
+          ) : (
+            <WeeklyCalendarList
+              startDate={startDate}
+              meals={meals}
+              onClick={openRecipeList}
+            />
+          )}
         </div>
 
         {recipeList && (

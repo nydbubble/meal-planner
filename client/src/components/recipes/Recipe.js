@@ -102,7 +102,8 @@ const Recipe = ({ auth, match, deleteRecipe }) => {
                 type="number"
                 value={servings}
                 onChange={changeServings}
-              ></input>{" "}
+                style={{ width: "40px", marginRight: "0.5rem" }}
+              ></input>
               serving{servings > 1 && "s"}
             </div>
 

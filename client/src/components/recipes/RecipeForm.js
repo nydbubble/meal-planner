@@ -81,6 +81,11 @@ const RecipeForm = ({ auth, addRecipe, editRecipe, match }) => {
     setFormData({ ...formData, ingredientsList });
   };
 
+  const deleteSection = (sectionID) => {
+    ingredientsList.splice(sectionID, 1);
+    setFormData({ ...formData, ingredientsList });
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -169,7 +174,11 @@ const RecipeForm = ({ auth, addRecipe, editRecipe, match }) => {
             {ingredientsList.length > 0 &&
               ingredientsList.map(({ section, ingredients }, sectionID) => (
                 <div className="bg-white p-1" key={`section_${sectionID}`}>
-                  <button className="btn btn-danger" type="button">
+                  <button
+                    onClick={() => deleteSection(sectionID)}
+                    className="btn btn-danger"
+                    type="button"
+                  >
                     Delete section
                   </button>
 
