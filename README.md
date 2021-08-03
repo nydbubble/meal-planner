@@ -1,6 +1,6 @@
 # Meal Planner
 
-Live demo: https://floating-taiga-00041.herokuapp.com/
+Live demo: https://mangosteen-app.herokuapp.com/
 
 Meal planner is a web application that helps users track their meal planning. The user is able to add their recipes to the 'Recipes' page.
 The 'Recipes' page is accessible to everyone but only the writer can edit and/or delete their recipes.
